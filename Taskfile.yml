@@ -1,6 +1,11 @@
 version: "3"
 
 tasks:
+  test:
+    desc: Test the app
+    cmds:
+      - go test -v ./...
+
   build:
     desc: Build the app
     cmds:
