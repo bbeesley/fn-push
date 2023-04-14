@@ -1,4 +1,4 @@
-name: CI
+name: Build, Test, & Release 🚀
 on:
   push:
     branches:
@@ -10,13 +10,22 @@ env:
   GO_VERSION: 1.20
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go: [1.19.x, 1.20.x]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    name: lint
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/setup-go@v4
         with:
-          go-version: ${{ env.GO_VERSION }}
-      - uses: golangci/golangci-lint-action@v3
+          go-version: ${{ matrix.go }}
+          cache: false
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: v1.29
   test:
     needs: lint
     strategy:
