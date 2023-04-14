@@ -34,6 +34,27 @@ import (
 	"github.com/spf13/cobra"
 )
 
+func S3Upload(region string, bucket string, keyName string, functionData *bytes.Buffer) {
+	cfg, err := config.LoadDefaultConfig(context.TODO())
+	if err != nil {
+		panic(err)
+	}
+
+	client := s3.NewFromConfig(cfg, func(o *s3.Options) {
+		o.Region = region
+	})
+
+	_, err = client.PutObject(context.TODO(), &s3.PutObjectInput{
+		Bucket: aws.String(bucket),
+		Key:    aws.String(keyName),
+		Body:   bytes.NewReader(functionData.Bytes()),
+	})
+	if err != nil {
+		log.Fatalf("failed to upload file '%s'", keyName)
+	}
+	fmt.Printf("Successfully uploaded %s to %s in %s\n", keyName, bucket, region)
+}
+
 // awsCmd represents the aws command
 var awsCmd = &cobra.Command{
 	Use:   "aws",
@@ -42,10 +63,6 @@ var awsCmd = &cobra.Command{
 	for use in lambda functions. Optionally creates a file for
 	a layer as well as a file for the function itself.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		cfg, err := config.LoadDefaultConfig(context.TODO())
-		if err != nil {
-			panic(err)
-		}
 		var functionKeyName string
 		if versionSuffix != "" {
 			functionKeyName = fmt.Sprintf("%s-%s.zip", functionKey, versionSuffix)
@@ -56,22 +73,7 @@ var awsCmd = &cobra.Command{
 		if layerKey == "" {
 			functionData := zip.Create(inputPath, include, exclude, rootDir, symlinkNodeModules)
 			for ix, region := range regions {
-				// Create a new S3 uploader
-				client := s3.NewFromConfig(cfg, func(o *s3.Options) {
-					o.Region = region
-				})
-
-				// Upload the file to S3
-				_, err = client.PutObject(context.TODO(), &s3.PutObjectInput{
-					Bucket: aws.String(buckets[ix]),
-					Key:    aws.String(functionKeyName),
-					Body:   bytes.NewReader(functionData.Bytes()),
-				})
-				if err != nil {
-					log.Fatal("failed to upload file", err)
-				}
-
-				fmt.Println("File uploaded successfully")
+				S3Upload(region, buckets[ix], functionKeyName, functionData)
 			}
 		} else {
 			functionExclude := exclude
@@ -87,31 +89,8 @@ var awsCmd = &cobra.Command{
 				layerKeyName = fmt.Sprintf("%s.zip", layerKey)
 			}
 			for ix, region := range regions {
-				// create s3 client
-				client := s3.NewFromConfig(cfg, func(o *s3.Options) {
-					o.Region = region
-				})
-
-				// Upload the function zip to S3
-				_, err = client.PutObject(context.TODO(), &s3.PutObjectInput{
-					Bucket: aws.String(buckets[ix]),
-					Key:    aws.String(functionKeyName),
-					Body:   bytes.NewReader(functionData.Bytes()),
-				})
-				if err != nil {
-					log.Fatal("failed to upload function", err)
-				}
-				// Upload the layer zip to S3
-				_, err = client.PutObject(context.TODO(), &s3.PutObjectInput{
-					Bucket: aws.String(buckets[ix]),
-					Key:    aws.String(layerKeyName),
-					Body:   bytes.NewReader(layerData.Bytes()),
-				})
-				if err != nil {
-					log.Fatal("failed to upload layer", err)
-				}
-
-				fmt.Println("Files uploaded successfully")
+				S3Upload(region, buckets[ix], functionKeyName, functionData)
+				S3Upload(region, buckets[ix], layerKeyName, layerData)
 			}
 		}
 	},

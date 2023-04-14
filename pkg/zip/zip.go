@@ -81,7 +81,7 @@ func BuildFileList(path string, include []string, exclude []string) []string {
 		for j := range matches {
 			exclude, matchError := doublestar.Match(exclude[i], matches[j])
 			if matchError != nil {
-				fmt.Printf("Error while checking file agains excludes: %v\n", matchError)
+				fmt.Printf("Error while checking file against excludes: %v\n", matchError)
 			}
 			if exclude {
 				index := sliceIndex(len(results), func(ix int) bool { return results[ix] == matches[j] })
