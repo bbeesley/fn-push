@@ -1,0 +1,22 @@
+version: "3"
+
+tasks:
+  build:
+    desc: Build the app
+    cmds:
+      - GOFLAGS=-mod=mod go build -o bin/fn-push main.go
+
+  run:
+    desc: Run the app
+    cmds:
+      - GOFLAGS=-mod=mod go run main.go
+
+  snapshot:
+    desc: Create a snapshot release
+    cmds:
+      - goreleaser release --snapshot --clean
+
+  release:
+    desc: Create a tagged release
+    cmds:
+      - goreleaser release
