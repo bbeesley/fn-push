@@ -34,6 +34,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// Uploads a file to S3 to the given bucket and key from a buffer
 func S3Upload(region string, bucket string, keyName string, functionData *bytes.Buffer) {
 	cfg, err := config.LoadDefaultConfig(context.TODO())
 	if err != nil {

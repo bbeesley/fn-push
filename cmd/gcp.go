@@ -34,6 +34,28 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// Uploads a file to Google Cloud Storage to the given bucket and key from a buffer
+func StorageUpload(bucket string, keyName string, functionData *bytes.Buffer) {
+	ctx := context.Background()
+	client, err := storage.NewClient(ctx)
+	if err != nil {
+		log.Fatalf("Failed to create client: %v", err)
+	}
+	defer client.Close()
+
+	object := client.Bucket(bucket).Object(keyName)
+	wc := object.NewWriter(ctx)
+	_, err = io.Copy(wc, bytes.NewReader(functionData.Bytes()))
+	if err != nil {
+		log.Fatalf("Failed to upload file: %v", err)
+	}
+	err = wc.Close()
+	if err != nil {
+		log.Fatalf("Writer.Close: %v", err)
+	}
+	fmt.Printf("Successfully uploaded %s to %s\n", keyName, bucket)
+}
+
 // gcpCmd represents the gcp command
 var gcpCmd = &cobra.Command{
 	Use:   "gcp",
@@ -59,17 +81,7 @@ var gcpCmd = &cobra.Command{
 		}
 		defer client.Close()
 		for _, bucketName := range buckets {
-			object := client.Bucket(bucketName).Object(functionKeyName)
-			wc := object.NewWriter(ctx)
-			_, err = io.Copy(wc, bytes.NewReader(functionData.Bytes()))
-			if err != nil {
-				log.Fatalf("Failed to upload file: %v", err)
-			}
-			err := wc.Close()
-			if err != nil {
-				log.Fatalf("Writer.Close: %v", err)
-			}
-			fmt.Println("File uploaded successfully")
+			StorageUpload(bucketName, functionKeyName, functionData)
 		}
 	},
 }

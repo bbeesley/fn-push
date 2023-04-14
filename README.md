@@ -1,3 +1,4 @@
+[![Build, Test, & Release 🚀](https://github.com/bbeesley/fn-push/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/bbeesley/fn-push/actions/workflows/build-and-test.yml)
 ## fn-push
 
 A simple tool to upload serverless function assets
