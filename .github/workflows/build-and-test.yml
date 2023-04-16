@@ -85,16 +85,18 @@ jobs:
           hooks: goreleaser
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  auto-approve:
+  tests-complete:
     runs-on: ubuntu-latest
     needs: test
-    if: ${{ github.actor == 'dependabot[bot]' && github.event_name != 'push' }}
+    if: ${{ github.event_name != 'push' }}
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
+        if: ${{ github.actor == 'dependabot[bot]' }}
         with:
           ref: ${{ env.REF }}
       - name: approve-dependabot
+        if: ${{ github.actor == 'dependabot[bot]' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PA_TOKEN }}
         run: |
