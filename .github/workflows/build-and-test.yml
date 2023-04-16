@@ -20,17 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         name: checkout
-      - uses: actions/cache@v3
-        name: setup cache
-        with:
-          path: |
-            ~/go/pkg/mod
-            ~/.cache/go-build
-            ~/Library/Caches/go-build
-            ~\AppData\Local\go-build
-          key: ${{ runner.os }}-go-${{ matrix.go-version }}-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-${{ matrix.go-version }}-
       - uses: actions/setup-go@v4
         name: setup go
         with:
@@ -52,17 +41,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         name: checkout
-      - uses: actions/cache@v3
-        name: setup cache
-        with:
-          path: |
-            ~/go/pkg/mod
-            ~/.cache/go-build
-            ~/Library/Caches/go-build
-            ~\AppData\Local\go-build
-          key: ${{ runner.os }}-go-${{ matrix.go-version }}-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-${{ matrix.go-version }}-
       - uses: actions/setup-go@v3
         name: setup go
         with:
@@ -84,12 +62,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         name: checkout
-      - uses: actions/cache@v3
-        with:
-          path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
       - uses: actions/setup-go@v3
         name: setup-go
         with:
