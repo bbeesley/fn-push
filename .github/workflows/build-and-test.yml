@@ -8,6 +8,7 @@ on:
       - "**"
 env:
   GO_VERSION: "1.20"
+concurrency: ${{ github.ref }}
 jobs:
   lint:
     strategy:
