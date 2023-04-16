@@ -45,7 +45,12 @@ jobs:
         name: setup go
         with:
           go-version: ${{ matrix.go-version }}
-      - id: auth
+      - name: aws
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::507109231688:role/automation-gha
+          aws-region: eu-west-2
+      - id: gcp
         name: authenticate to google cloud
         uses: google-github-actions/auth@v1
         with:
