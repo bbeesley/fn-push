@@ -55,8 +55,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::507109231688:role/automation-gha
           aws-region: eu-west-2
-      - id: gcp
-        name: authenticate to google cloud
+      - name: gcp
         uses: google-github-actions/auth@v1
         with:
           token_format: "access_token"
