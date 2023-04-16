@@ -64,6 +64,13 @@ jobs:
         name: setup go
         with:
           go-version: ${{ matrix.go-version }}
+      - id: auth
+        name: authenticate to google cloud
+        uses: google-github-actions/auth@v1
+        with:
+          token_format: "access_token"
+          workload_identity_provider: "projects/667354156589/locations/global/workloadIdentityPools/cicd/providers/github"
+          service_account: storage-writer@bbeesley-iam.iam.gserviceaccount.com
       - run: go test -v ./...
         name: test
   release:
