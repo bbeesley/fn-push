@@ -40,6 +40,8 @@ jobs:
           version: v1.52
           args: --timeout=10m0s
   test:
+    permissions:
+      id-token: write
     needs: lint
     strategy:
       matrix:
