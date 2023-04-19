@@ -6,8 +6,9 @@ require (
 	cloud.google.com/go/storage v1.30.1
 	github.com/aws/aws-sdk-go-v2 v1.17.8
 	github.com/aws/aws-sdk-go-v2/config v1.18.21
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.31.3
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.32.0
 	github.com/bmatcuk/doublestar/v4 v4.6.0
+	github.com/google/uuid v1.3.0
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/viper v1.15.0
 )
@@ -36,7 +37,6 @@ require (
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
-	github.com/google/uuid v1.3.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.2.3 // indirect
 	github.com/googleapis/gax-go/v2 v2.7.1 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
