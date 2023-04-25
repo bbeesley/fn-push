@@ -14,6 +14,47 @@ fn-push is a CLI tool to zip up serverless function assets and upload them to a 
   -h, --help   help for fn-push
 ```
 
+### AWS Usage
+
+```
+fn-push aws [flags]
+```
+
+#### Options
+
+```
+  -b, --buckets stringArray    A list of buckets to upload to (same order as the regions please
+  -e, --exclude stringArray    An array of globs defining what not to bundle
+  -f, --functionKey string     The path/filename of the zip file in the bucket (you don't need to add the .zip extension, but remember to include a version string of some sort)
+  -h, --help                   help for aws
+  -i, --include stringArray    An array of globs defining what to bundle (default [**])
+  -p, --inputPath string       The path to the lambda code and node_modules (default ".")
+  -l, --layerKey string        Tells the module to split out the node modules into a zip that you can create a lambda layer from
+  -r, --regions stringArray    A list of regions to upload the assets in
+      --rootDir string         An optional path within the zip to save the files to
+  -n, --symlinkNodeModules     Should we create a symlink from the function directory to the layer node_modules?
+  -v, --versionSuffix string   An optional string to append to layer and function keys to use as a version indicator
+```
+
+### GCP Usage
+
+```
+fn-push gcp [flags]
+```
+
+### Options
+
+```
+  -b, --buckets stringArray    A list of buckets to upload to (same order as the regions please
+  -e, --exclude stringArray    An array of globs defining what not to bundle
+  -f, --functionKey string     The path/filename of the zip file in the bucket (you don't need to add the .zip extension, but remember to include a version string of some sort)
+  -h, --help                   help for gcp
+  -i, --include stringArray    An array of globs defining what to bundle (default [**])
+  -p, --inputPath string       The path to the lambda code and node_modules (default ".")
+      --rootDir string         An optional path within the zip to save the files to
+  -v, --versionSuffix string   An optional string to append to layer and function keys to use as a version indicator
+```
+
 ### SEE ALSO
 
 * [fn-push aws](fn-push_aws.md)	 - Upload lambda assets to S3
