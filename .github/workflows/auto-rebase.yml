@@ -13,4 +13,4 @@ jobs:
       - name: request rebase
         uses: bbeesley/gha-auto-dependabot-rebase@v1.3.132
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PA_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_PA_TOKEN }}
