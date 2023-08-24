@@ -51,7 +51,7 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
       - name: aws
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::507109231688:role/automation-gha
           aws-region: eu-west-2
