@@ -18,7 +18,7 @@ jobs:
     name: lint
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: checkout
         with:
           ref: ${{ env.REF }}
@@ -42,7 +42,7 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: checkout
         with:
           ref: ${{ env.REF }}
@@ -70,7 +70,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: checkout
         with:
           ref: ${{ env.REF }}
@@ -90,7 +90,7 @@ jobs:
     if: ${{ github.event_name != 'push' }}
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         if: ${{ github.actor == 'dependabot[bot]' }}
         with:
           ref: ${{ env.REF }}
