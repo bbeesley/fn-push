@@ -14,8 +14,7 @@ import (
 	"github.com/bmatcuk/doublestar/v4"
 )
 
-func getFsys(path string) fs.FS {
-	var fsys fs.FS
+func getFullPath(path string) string {
 	f, getWdErr := os.Getwd()
 	if getWdErr != nil {
 		log.Fatal(getWdErr)
@@ -25,6 +24,12 @@ func getFsys(path string) fs.FS {
 	} else {
 		path = filepath.Join(f, path)
 	}
+	return path
+}
+
+func getFsys(path string) fs.FS {
+	var fsys fs.FS
+	path = getFullPath(path)
 	fsys = os.DirFS(path)
 	return fsys
 }
@@ -106,20 +111,31 @@ func addFilesToZip(path string, files []string, rootDir string, symlinkNodeModul
 		}
 	}
 	for _, file := range files {
+		fileInfo, err := os.Stat(filepath.Join(getFullPath(path), file))
 		if rootDir != "" {
 			file = filepath.Join(rootDir, file)
 		}
-		f, createWriterError := w.Create(file)
-		if createWriterError != nil {
-			log.Fatal(createWriterError)
+		if err != nil {
+			log.Fatal(err)
 		}
-		source, readError := fsys.Open(file)
-		if readError != nil {
-			log.Fatal(readError)
+		header, err := zip.FileInfoHeader(fileInfo)
+		if err != nil {
+			log.Fatal(err)
 		}
-		_, copyError := io.Copy(f, source)
-		if copyError != nil {
-			log.Fatal(createWriterError)
+		header.Name = file
+		header.Method = zip.Deflate
+		header.SetMode(fileInfo.Mode())
+		f, err := w.CreateHeader(header)
+		if err != nil {
+			log.Fatal(err)
+		}
+		source, err := fsys.Open(file)
+		if err != nil {
+			log.Fatal(err)
+		}
+		_, err = io.Copy(f, source)
+		if err != nil {
+			log.Fatal(err)
 		}
 	}
 
