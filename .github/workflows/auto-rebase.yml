@@ -11,6 +11,6 @@ jobs:
     if: github.event_name == 'release' || github.ref_name == github.event.repository.default_branch
     steps:
       - name: request rebase
-        uses: bbeesley/gha-auto-dependabot-rebase@v1.3.325
+        uses: bbeesley/gha-auto-dependabot-rebase@v1.3.326
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_PA_TOKEN }}
