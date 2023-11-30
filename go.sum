@@ -48,8 +48,8 @@ cloud.google.com/go/storage v1.35.1/go.mod h1:M6M/3V/D3KpzMTJyPOR/HU6n2Si5QdaXYE
 dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7gZCb22OMCxBHrMx7a5I7Hp++hsVxbQ4BYO7hU=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
-github.com/aws/aws-sdk-go-v2 v1.23.3 h1:Q98kldotjjQimJumYc7tjJRBWOefARezGhP8nIlnExE=
-github.com/aws/aws-sdk-go-v2 v1.23.3/go.mod h1:6wqGJPusLvL1YYcoxj4vPtACABVl0ydN1sxzBetRcsw=
+github.com/aws/aws-sdk-go-v2 v1.23.4 h1:2P20ZjH0ouSAu/6yZep8oCmTReathLuEu6dwoqEgjts=
+github.com/aws/aws-sdk-go-v2 v1.23.4/go.mod h1:t3szzKfP0NeRU27uBFczDivYJjsmSnqI8kIvKyWb9ds=
 github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.5.2 h1:1oGZAnpWWnJgPPWC07RrXt2Ah0qbfbzP466aruiX8pk=
 github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.5.2/go.mod h1:XBiFjNGW7x9HG45+j5YGxEcN83ORvTNbzE54kNDJuYo=
 github.com/aws/aws-sdk-go-v2/config v1.25.9 h1:B04q0cjw4nkynqKsKAusTokhlWH2rOt9NsciQuT1UZE=
@@ -82,8 +82,8 @@ github.com/aws/aws-sdk-go-v2/service/ssooidc v1.21.0 h1:ffOjyqfqEgqZv5zeXfaLaUKo
 github.com/aws/aws-sdk-go-v2/service/ssooidc v1.21.0/go.mod h1:FTwjnnqupa0CRANldhsnRVgzaPzhAy/XZYddy06JOLU=
 github.com/aws/aws-sdk-go-v2/service/sts v1.26.0 h1:E0i/PbCoOu04ichWZfLoSgidxkHh7HGfC8l9HWdALi8=
 github.com/aws/aws-sdk-go-v2/service/sts v1.26.0/go.mod h1:YHpL2uHCmZtSkDJYc2gG0LSZkeColBGi2TZyCFG8GmE=
-github.com/aws/smithy-go v1.18.0 h1:uWqjOwPEqjzmQXpwm/8cwUWTmFhT9Ypc8tECXrshDsI=
-github.com/aws/smithy-go v1.18.0/go.mod h1:NukqUGpCZIILqqiV0NIjeFh24kd/FAa4beRb6nbIUPE=
+github.com/aws/smithy-go v1.18.1 h1:pOdBTUfXNazOlxLrgeYalVnuTpKreACHtc62xLwIB3c=
+github.com/aws/smithy-go v1.18.1/go.mod h1:NukqUGpCZIILqqiV0NIjeFh24kd/FAa4beRb6nbIUPE=
 github.com/bmatcuk/doublestar/v4 v4.6.1 h1:FH9SifrbvJhnlQpztAx++wlkk70QBf0iBWDwNy7PA4I=
 github.com/bmatcuk/doublestar/v4 v4.6.1/go.mod h1:xBQ8jztBU6kakFMg+8WGxn0c6z1fTSPVIjEY1Wr7jzc=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
