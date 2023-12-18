@@ -10,7 +10,7 @@ require (
 	github.com/bmatcuk/doublestar/v4 v4.6.1
 	github.com/google/uuid v1.5.0
 	github.com/spf13/cobra v1.8.0
-	github.com/spf13/viper v1.18.1
+	github.com/spf13/viper v1.18.2
 )
 
 require (
