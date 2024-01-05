@@ -6,7 +6,7 @@ require (
 	cloud.google.com/go/storage v1.36.0
 	github.com/aws/aws-sdk-go-v2 v1.24.1
 	github.com/aws/aws-sdk-go-v2/config v1.26.3
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.47.8
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.48.0
 	github.com/bmatcuk/doublestar/v4 v4.6.1
 	github.com/google/uuid v1.5.0
 	github.com/spf13/cobra v1.8.0
