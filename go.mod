@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	cloud.google.com/go/storage v1.41.0
-	github.com/aws/aws-sdk-go-v2 v1.26.2
+	github.com/aws/aws-sdk-go-v2 v1.27.0
 	github.com/aws/aws-sdk-go-v2/config v1.27.14
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.54.1
 	github.com/bmatcuk/doublestar/v4 v4.6.1
