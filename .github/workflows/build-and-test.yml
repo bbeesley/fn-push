@@ -82,6 +82,7 @@ jobs:
         name: release
         with:
           hooks: goreleaser
+          changelog-file: CHANGELOG.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   tests-complete:

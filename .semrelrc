@@ -1,7 +1,10 @@
 {
   "plugins": {
     "commit-analyzer": {
-      "name": "default@^1.0.0"
+      "name": "default@^1.0.0",
+      "options": {
+        "minor_release_rules": "feat,chore(deps)"
+      }
     },
     "ci-condition": {
       "name": "default"
@@ -13,12 +16,10 @@
       }
     },
     "provider": {
-      "name": "github"
-    },
-    "files-updater": {
-      "names": [
-        "npm"
-      ]
+      "name": "github",
+      "options": {
+        "slug": "bbeesley/fn-push"
+      }
     }
   }
 }
