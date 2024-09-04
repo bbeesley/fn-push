@@ -5,7 +5,7 @@ go 1.20
 require (
 	cloud.google.com/go/storage v1.43.0
 	github.com/aws/aws-sdk-go-v2 v1.30.5
-	github.com/aws/aws-sdk-go-v2/config v1.27.32
+	github.com/aws/aws-sdk-go-v2/config v1.27.33
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.61.1
 	github.com/bmatcuk/doublestar/v4 v4.6.1
 	github.com/google/uuid v1.6.0
@@ -20,7 +20,7 @@ require (
 	cloud.google.com/go/compute/metadata v0.3.0 // indirect
 	cloud.google.com/go/iam v1.1.8 // indirect
 	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.6.4 // indirect
-	github.com/aws/aws-sdk-go-v2/credentials v1.17.31 // indirect
+	github.com/aws/aws-sdk-go-v2/credentials v1.17.32 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.16.13 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/configsources v1.3.17 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.6.17 // indirect
@@ -30,9 +30,9 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.3.19 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.11.19 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.17.17 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sso v1.22.6 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.26.6 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sts v1.30.6 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sso v1.22.7 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.26.7 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sts v1.30.7 // indirect
 	github.com/aws/smithy-go v1.20.4 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
