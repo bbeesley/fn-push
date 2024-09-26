@@ -100,12 +100,12 @@ func BuildFileList(path string, include []string, exclude []string) []string {
 	return results
 }
 
-func addFilesToZip(path string, files []string, rootDir string, symlinkNodeModules bool) *bytes.Buffer {
+func addFilesToZip(path string, files []string, rootDir string, symlinkNodeModules bool, symlinkTarget string) *bytes.Buffer {
 	fsys := getFsys(path)
 	buf := new(bytes.Buffer)
 	w := zip.NewWriter(buf)
 	if symlinkNodeModules {
-		err := addSymlinkToZip(w, "node_modules", "/opt/nodejs/node_modules")
+		err := addSymlinkToZip(w, "node_modules", fmt.Sprintf("/opt/%s", symlinkTarget))
 		if err != nil {
 			log.Fatal("Failed to create symlink in zip archive", err)
 		}
@@ -150,8 +150,8 @@ func addFilesToZip(path string, files []string, rootDir string, symlinkNodeModul
 // the zip archive, and a boolean to indicate whether it should create a symlink from the lambada layer path to the
 // function's node_modules path. It uses these arguments to create a list of files to be added to the archive,
 // creates the archive, and returns it as a buffer.
-func Create(path string, include []string, exclude []string, rootDir string, symlinkNodeModules bool) *bytes.Buffer {
+func Create(path string, include []string, exclude []string, rootDir string, symlinkNodeModules bool, symlinkTarget string) *bytes.Buffer {
 	fileList := BuildFileList(path, include, exclude)
-	zip := addFilesToZip(path, fileList, rootDir, symlinkNodeModules)
+	zip := addFilesToZip(path, fileList, rootDir, symlinkNodeModules, symlinkTarget)
 	return zip
 }

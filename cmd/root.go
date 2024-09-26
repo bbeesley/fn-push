@@ -38,11 +38,12 @@ var regions []string
 var buckets []string
 var functionKey string
 var layerKey string
+var nodeVersion string
 var versionSuffix string
 var symlinkNodeModules bool
 
-// rootCmd represents the base command when called without any subcommands
-var rootCmd = &cobra.Command{
+// RootCmd represents the base command when called without any subcommands
+var RootCmd = &cobra.Command{
 	Use:   "fn-push",
 	Short: "A simple tool to upload serverless function assets",
 	Long: `fn-push is a CLI tool to zip up serverless function assets and upload them to a bucket.
@@ -52,7 +53,7 @@ var rootCmd = &cobra.Command{
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
-	err := rootCmd.Execute()
+	err := RootCmd.Execute()
 	if err != nil {
 		os.Exit(1)
 	}

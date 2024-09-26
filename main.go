@@ -21,7 +21,9 @@ THE SOFTWARE.
 */
 package main
 
-import "github.com/bbeesley/fn-push/cmd"
+import (
+	"github.com/bbeesley/fn-push/cmd"
+)
 
 func main() {
 	cmd.Execute()
