@@ -73,7 +73,7 @@ func TestCreateZip(t *testing.T) {
 	if err != nil {
 		t.Fatal("Error reading file", err)
 	}
-	zipData := Create("../", []string{"**/zip*"}, []string{"**/zip.go"}, "", false)
+	zipData := Create("../", []string{"**/zip*"}, []string{"**/zip.go"}, "", false, "")
 	r, err := zip.NewReader(bytes.NewReader(zipData.Bytes()), int64(zipData.Len()))
 	if err != nil {
 		t.Fatal("Error opening zip archive", err)

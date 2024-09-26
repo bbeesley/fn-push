@@ -72,17 +72,22 @@ var awsCmd = &cobra.Command{
 		}
 
 		if layerKey == "" {
-			functionData := zip.Create(inputPath, include, exclude, rootDir, symlinkNodeModules)
+			functionData := zip.Create(inputPath, include, exclude, rootDir, symlinkNodeModules, "")
 			for ix, region := range regions {
 				S3Upload(region, buckets[ix], functionKeyName, functionData)
 			}
 		} else {
 			functionExclude := exclude
+			layerRootDir := rootDir
 			if symlinkNodeModules {
 				functionExclude = append(functionExclude, "node_modules/**")
+				layerRootDir = "nodejs"
+				if nodeVersion != "" {
+					layerRootDir += fmt.Sprintf("/node%s", nodeVersion)
+				}
 			}
-			functionData := zip.Create(inputPath, include, functionExclude, rootDir, symlinkNodeModules)
-			layerData := zip.Create(inputPath, []string{"node_modules/**"}, []string{}, rootDir, false)
+			functionData := zip.Create(inputPath, include, functionExclude, rootDir, symlinkNodeModules, layerRootDir)
+			layerData := zip.Create(inputPath, []string{"node_modules/**"}, []string{}, layerRootDir, false, "")
 			var layerKeyName string
 			if versionSuffix != "" {
 				layerKeyName = fmt.Sprintf("%s-%s.zip", layerKey, versionSuffix)
@@ -98,7 +103,7 @@ var awsCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(awsCmd)
+	RootCmd.AddCommand(awsCmd)
 	awsCmd.Flags().StringVarP(&inputPath, "inputPath", "p", ".", "The path to the lambda code and node_modules")
 	awsCmd.Flags().StringArrayVarP(&include, "include", "i", []string{"**"}, "An array of globs defining what to bundle")
 	awsCmd.Flags().StringArrayVarP(&exclude, "exclude", "e", []string{}, "An array of globs defining what not to bundle")
@@ -107,6 +112,7 @@ func init() {
 	awsCmd.Flags().StringArrayVarP(&buckets, "buckets", "b", []string{}, "A list of buckets to upload to (same order as the regions please")
 	awsCmd.Flags().StringVarP(&functionKey, "functionKey", "f", "", "The path/filename of the zip file in the bucket (you don't need to add the .zip extension, but remember to include a version string of some sort)")
 	awsCmd.Flags().StringVarP(&layerKey, "layerKey", "l", "", "Tells the module to split out the node modules into a zip that you can create a lambda layer from")
+	awsCmd.Flags().StringVar(&nodeVersion, "nodeVersion", "", "The node major version that your layer is using, eg 20")
 	awsCmd.Flags().StringVarP(&versionSuffix, "versionSuffix", "v", "", "An optional string to append to layer and function keys to use as a version indicator")
 	awsCmd.Flags().BoolVarP(&symlinkNodeModules, "symlinkNodeModules", "n", false, "Should we create a symlink from the function directory to the layer node_modules?")
 

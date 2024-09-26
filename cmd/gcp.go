@@ -63,7 +63,7 @@ var gcpCmd = &cobra.Command{
 	Long: `Zips up function assets and uploads them to Google
 	Cloud Storage for use in Cloud Functions.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		functionData := zip.Create(inputPath, include, exclude, rootDir, symlinkNodeModules)
+		functionData := zip.Create(inputPath, include, exclude, rootDir, symlinkNodeModules, "")
 		ctx := context.Background()
 
 		// Sets your Google Cloud Platform project ID.
@@ -87,7 +87,7 @@ var gcpCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(gcpCmd)
+	RootCmd.AddCommand(gcpCmd)
 
 	gcpCmd.Flags().StringVarP(&inputPath, "inputPath", "p", ".", "The path to the lambda code and node_modules")
 	gcpCmd.Flags().StringArrayVarP(&include, "include", "i", []string{"**"}, "An array of globs defining what to bundle")
