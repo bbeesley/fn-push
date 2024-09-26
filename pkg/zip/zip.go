@@ -112,8 +112,9 @@ func addFilesToZip(path string, files []string, rootDir string, symlinkNodeModul
 	}
 	for _, file := range files {
 		fileInfo, err := os.Stat(filepath.Join(getFullPath(path), file))
+		zipFileName := file
 		if rootDir != "" {
-			file = filepath.Join(rootDir, file)
+			zipFileName = filepath.Join(rootDir, file)
 		}
 		if err != nil {
 			log.Fatal(err)
@@ -122,7 +123,7 @@ func addFilesToZip(path string, files []string, rootDir string, symlinkNodeModul
 		if err != nil {
 			log.Fatal(err)
 		}
-		header.Name = file
+		header.Name = zipFileName
 		header.Method = zip.Deflate
 		header.SetMode(fileInfo.Mode())
 		f, err := w.CreateHeader(header)
