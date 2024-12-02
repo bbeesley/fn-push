@@ -6,7 +6,7 @@ toolchain go1.21.4
 
 require (
 	cloud.google.com/go/storage v1.47.0
-	github.com/aws/aws-sdk-go-v2 v1.32.5
+	github.com/aws/aws-sdk-go-v2 v1.32.6
 	github.com/aws/aws-sdk-go-v2/config v1.28.5
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.69.0
 	github.com/bmatcuk/doublestar/v4 v4.7.1
